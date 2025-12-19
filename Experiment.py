@@ -1,135 +1,76 @@
-#Week 3
-'''#1
-for i in range(1,11):
-    print(i)
+def find_best_student(student_names, student_scores):
+    highest_score=0
+    high_score_index=0
+    for score in range(len(student_scores)):
+        if student_scores[score]>highest_score:
+            highest_score=student_scores[score]
+            high_score_index=score
+    return student_names[high_score_index]
 
-#2
-for a in range(2,21,2):
+names = ["Alice", "Bob", "Charlie", "David"]
+scores = [100, 92, 89, 95]
+print(find_best_student(names,scores))
+def remove_outliers(data, min_val, max_val):
+    for number in data:
+        if number<min_val or number>max_val:
+            data.remove(number)
+    return data
 
-    print(a)
 
-#3
-for a in range(1,16,2):
-    print(a)
+measurements=[8, 5, 12, 1, 9, 20, 15]
+temps = [-5, 10, 0, 35, 15, 40, 20]
+edge_case = [100, 1, 101, 2, 102]
+print(remove_outliers(measurements,5,15))
+print(remove_outliers(temps,0,30))
+print(remove_outliers(edge_case,0,10))
 
-#4
-for a in range(1,11):
-    print(a**2)
-
-#5
-list1=["apple","banana","cherry"]
-for element in list1:
-    print("Element:",element) '''
-
-'''#1
-for a in range(1,11):
-    print(a)
-
-#2
-for a in range(2,21,2):
-    print(a)
-#3
-for a in "hello":
-    print(a)
-#4
-b=0
-for a in range(1,21):
-    b=b+a
-print(b)
-
-#5
-a=11
-for i in range(2,12):
-    a=a-1
-    print(a)
-#6
-for i in range(1,6):
-    print(i**2)
-#7
-names=["John","Alice","Bob"]
-for name in names:
-    print(name)'''
-
-#WHILE LOOPS
-'''#1
-count=0
-while count<10:
-    count=count+1
-    print(count)
-print()
-#2
-count1=11
-while count1>1:
-    count1=count1-1
-    print(count1)'''
-
-'''#3
-count=0
-while count<19:
-    count=count+2
-    print(count)
-#4
-while True:
-    num=float(input("Enter a number:"))
-    if num==0:
-        print("Correct")
-        break
-    else:
-        print("Not Correct")'''
-
-'''#1
-while True:
-    password=input("Enter the password:")
-    if password=="Python123":
-        print("Access granted!")
-        break
-    else:
-        print("Wrong password, try again")
-#2
-while True:
-    num=float(input("Enter a number:"))
-    if num>0:
-        print("Thank you!")
-        break
-    else:
-        print("Number must be positive")
-#3
-secret_number=7
-while True:
-    guess=int(input("Enter your guess:"))
-    if guess==secret_number:
-        print("You got it!")
-        break
-    else:
-        print("Try again")'''
-#1
-try:
-    num=float(input("Enter a number:"))
-    print(num)
-except ValueError:
-    print("This is not a number")
-#2
-try:
-    num1=float(input("Enter the first number:"))
-    num2=float(input("Enter the second number:"))
-    print(num1/num2)
-except ZeroDivisionError:
-    print("You can't divide by 0")
-#3
-try:
-    age=int(input("Enter your age:"))
-    if age<=0:
-        raise ValueError("Age can't be negative")
-    print(age)
-except ValueError:
-    print("Age can't be negative")
-#4
-try:
-    a=float(input("Enter the first number:"))
-    b=float(input("Enter the second number:"))
-    print(a/b)
-except ValueError:
-    print("Enter numbers")
-except ZeroDivisionError:
-    print("You can't divide by 0")
+def add_racer(racers, lap_times, new_racer, new_time):
+    new_time=new_racer[1]
+    new_racer=new_racer[0]
+    racers.append(new_racer)
+    lap_times.append(new_time)
+def disqualify_racer(racers, lap_times, racer_to_disqualify):
+    for racer in range(len(racers)):
+        if racers[racer]==racer_to_disqualify:
+            racers.pop(racer)
+            lap_times.pop(racer)
+            return True
+        elif racers[racer]!=racer_to_disqualify:
+            return False
         
+def get_fastest_laps(racers, lap_times, count):
+    rank_list=[]
+    top_speed=0
+    for racer in range(len(racers)):
+        if lap_times[racer]>top_speed:
+            top_speed=lap_times[racer]
+            rank_list.append(racers[racer])
+            rank_list.append(lap_times[racer])
+    return rank_list
+def manage_race_results(initial_racers, initial_times, new_racer_data, racer_to_disqualify, top_count):
+    racers=initial_racers.copy()
+    lap_times=initial_times.copy()
+    added_list=add_racer(racers,lap_times,new_racer_data)
+    disqualify_racer=disqualify_racer(racer_to_disqualify)
+    fastest_laps=get_fastest_laps(racers,lap_times,count)
+    return added_list,fastest_laps
+racers = ["Axel", "Blaze", "Cruz", "Dash", "Echo"]
+times = [95.42, 94.88, 96.10, 95.90, 94.99]
+new_racer = ["Fang", 94.50]
+disqualify_name = "Dash"
+count = 3
+print(manage_race_results(racers,times,new_racer,disqualify_name,count))
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
